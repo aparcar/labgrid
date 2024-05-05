@@ -1,13 +1,14 @@
-Release 25.1 (Unreleased)
+Release 26.0 (unreleased)
 -------------------------
 
-New Features in 25.1
+New Features in 26.0
 ~~~~~~~~~~~~~~~~~~~~
-
-- The default interrupt key for the `BareboxDriver` is now CTRL+D (``\x04``)
-  instead of a line feed (``\n``). barebox v2025.03.0 onwards handles
-  CTRL+D specially to halt autoboot countdown without running interactive
-  hooks like bringing up network interfaces automatically.
+- The `QEMUDriver` now supports a ``netdev`` argumet which can be added to the
+  ``add_port_forward`` in case there are more than one network interfaces
+  defined.
+- The `QEMUDriver` now supports a ``netdev`` argumet which can be added to the
+  ``add_port_forward`` in case there are more than one network interfaces
+  defined.
 
 Breaking changes in 25.1
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -793,7 +794,7 @@ New and Updated Drivers
 - The `SerialDriver` now supports using plain TCP instead of RFC 2217, which is
   needed from some console servers.
 - The `ShellDriver` has been improved:
-  
+
   - It supports configuring the various timeouts used during the login process.
   - It can use xmodem to transfer file from and to the target.
 
