@@ -22,6 +22,7 @@ class UBootStrategy(Strategy):
         "console": "ConsoleProtocol",
         "uboot": "UBootDriver",
         "shell": "ShellDriver",
+        "tftp": "TFTPProviderDriver",
     }
 
     status = attr.ib(default=Status.unknown)
@@ -43,6 +44,8 @@ class UBootStrategy(Strategy):
         elif status == Status.uboot:
             self.transition(Status.off)
             self.target.activate(self.console)
+            self.target.activate(self.tftp)
+            self.tftp.stage(self.target.env.config.get_image_path("firmware"))
             # cycle power
             self.power.cycle()
             # interrupt uboot
