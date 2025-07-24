@@ -985,6 +985,7 @@ class ClientSession:
             return 255
 
         if self.args.internal or os.environ.get("LG_CONSOLE") == "internal":
+            logging.info("Using internal console")
             console = target.get_driver(ConsoleProtocol, name=name)
             returncode = await term.internal(lambda: self.is_allowed(place), console, logfile, listen_only)
         else:
